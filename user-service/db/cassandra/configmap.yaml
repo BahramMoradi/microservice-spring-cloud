@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: init-db
+  namespace: ns-cassandra-db
+data:
+  "01-init.cql": |
+    CREATE KEYSPACE IF NOT EXISTS userdb
+      WITH REPLICATION = {
+        'class': 'SimpleStrategy',
+        'replication_factor' : 1
+      };

@@ -1,10 +1,10 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.1'
+	id 'org.springframework.boot' version '2.6.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 
-group = 'dk.ufst.bam'
+group = 'dk.ufst'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -23,38 +23,17 @@ ext {
 }
 
 dependencies {
-	// eureka client
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	// config
-	implementation 'org.springframework.cloud:spring-cloud-starter-config'
-	//actuator
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation group: 'org.springframework.integration', name: 'spring-integration-core', version: '5.5.6'
-
-
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-
-
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	//documentation
-	implementation group: 'org.springdoc', name: 'springdoc-openapi-webflux-ui', version: '1.5.13'
-
-	//dev
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	//lombok
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
-
-
-	//test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	//testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 	testImplementation 'io.projectreactor:reactor-test'
-}
-
-springBoot {
-	buildInfo()
 }
 
 dependencyManagement {
@@ -63,6 +42,6 @@ dependencyManagement {
 	}
 }
 
-test {
+tasks.named('test') {
 	useJUnitPlatform()
 }

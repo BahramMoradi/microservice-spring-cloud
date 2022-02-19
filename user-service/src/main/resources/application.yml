@@ -1,0 +1,47 @@
+server:
+  port: ${PORT:8089}
+spring:
+  application:
+    name: user-service
+  config:
+    import=optional:configserver:
+  cloud:
+    config:
+      enabled: false
+  autoconfigure:
+    exclude : org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+  data:
+    cassandra:
+      keyspace-name: "userdb"
+      # Hvis man kør datbase servicen i k8s som Loadbalancer og kør applikationen lokalt
+      # så contact-point skal være localhost
+      # ellers contakt point skal være namespace.database_name
+      #cassandra-db-demo.db-demo
+      #contact-points: localhost
+      port: 9042
+      schema-action: create_if_not_exists
+      username: user_service_app
+      password: user_service_app
+      #compression: lz4
+      local-datacenter: datacenter1
+cassandra:
+  base-packages: dk.ufst.bam.userservice.repository.entity
+springdoc:
+  api-docs:
+    resolve-schema-properties: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  health:
+    defaults:
+      enabled: false
+  trace:
+    http:
+      enabled: true
+      include: ${REVISION_TRACE_INCLUDES:request-headers,response-headers,remote-address,time-taken}
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,4 +1,4 @@
-package dk.ufst.bam.msspringcloud;
+package dk.ufst.beskedservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @EnableMongoRepositories
-public class MsSpringCloudApplication {
+public class BeskedServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsSpringCloudApplication.class, args);
+		SpringApplication.run(BeskedServiceApplication.class, args);
 	}
 
 }

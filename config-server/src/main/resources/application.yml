@@ -1,0 +1,25 @@
+server:
+  port: ${PORT:8888}
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: C:/Users/bahmo/Documents/PersonalUdvikling/microservices/config
+
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: ${DISCOVERY_URL:http://localhost:9999/eureka}
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 2
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+#    prefer-ip-address: true
+#
+#ribbon:
+#  eureka:
+#    enabled: true
